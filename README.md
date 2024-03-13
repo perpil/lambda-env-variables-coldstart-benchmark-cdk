@@ -1,8 +1,26 @@
-# Welcome to your CDK TypeScript project
+# About
+This was used to test whether using environment variables in Lambda impact coldstarts.  It runs a Lambda every 3 hours to test coldstart times.
 
-This is a blank project for CDK development with TypeScript.
+# Deployment
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+```
+npm install
+npx cdk deploy
+```
+
+# CloudWatch Insights Queries
+To get Init Duration deltas run this on `/aws/lambda/Function and /aws/lambda/FunctionWithEnv` simultaneously:
+```
+filter ispresent(@initDuration) |
+stats max(@initDuration)-min(@initDuration) as delta by bin(2h) | stats min(delta) as min, avg(delta) as avg, pct(delta,50) as p50, max(delta) as max
+```
+
+To get E2E latency deltas run this on `/aws/lambda/Coldstarter`:
+```
+filter ispresent(coldstart) and coldstart >0
+| stats min(latency) as mi, max(latency) as ma by bin(2h) as bucket
+| stats min(ma-mi) as min, avg(ma-mi) as avg, pct(ma-mi,50) as p50,pct(ma-mi,90) as p90, pct(ma-mi,95) as p95, max(ma-mi) as max
+```
 
 ## Useful commands
 
