@@ -12,7 +12,7 @@ npx cdk deploy
 
 * [lib/coldstarter-stack.ts](lib/coldstarter-stack.ts) - Defines the stack
 * [src/coldstarter.js](src/coldstarter.js) - The Lambda function that invokes the other lambda functions and emits latency logs
-* [src/handler.js](src/handler.js) - The Lambda function has environment variables or not.
+* [src/handler.js](src/handler.js) - The Lambda function which has environment variables or not.
 
 ## CloudWatch Insights Queries
 To get Init Duration deltas run this on `/aws/lambda/Function and /aws/lambda/FunctionWithEnv` simultaneously:
