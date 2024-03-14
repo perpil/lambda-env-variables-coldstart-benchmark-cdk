@@ -15,7 +15,7 @@ npx cdk deploy
 * [src/handler.js](src/handler.js) - The Lambda function which has environment variables or not.
 
 ## CloudWatch Insights Queries
-To get Init Duration deltas run this on `/aws/lambda/Function and /aws/lambda/FunctionWithEnv` simultaneously:
+To get Init Duration deltas run this on `/aws/lambda/Function` and `/aws/lambda/FunctionWithEnv` simultaneously:
 ```
 filter ispresent(@initDuration) |
 stats max(@initDuration)-min(@initDuration) as delta by bin(2h) | stats min(delta) as min, avg(delta) as avg, pct(delta,50) as p50, max(delta) as max
