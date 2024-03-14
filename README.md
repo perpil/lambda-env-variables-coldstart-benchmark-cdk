@@ -1,5 +1,5 @@
 # About
-This was used to test whether using environment variables in Lambda impact coldstarts.  It runs a Lambda every 3 hours to test coldstart times.
+This was used to test whether using environment variables in Lambda impact coldstarts.  It runs a Lambda every 3 hours to test coldstart times. [Here](https://speedrun.nobackspacecrew.com/blog/2024/03/13/lambda-environment-variables-impact-on-coldstarts.html) is the companion blog post.
 
 ## Deployment
 
