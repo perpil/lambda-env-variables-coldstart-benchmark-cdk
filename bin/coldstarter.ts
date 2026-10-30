@@ -4,7 +4,14 @@ import * as cdk from 'aws-cdk-lib';
 import { ColdstarterStack } from '../lib/coldstarter-stack';
 
 const app = new cdk.App();
+
+const functionsContext = app.node.tryGetContext('functions');
+const functions = typeof functionsContext === 'string'
+  ? functionsContext.split(',').map((f) => f.trim())
+  : undefined;
+
 new ColdstarterStack(app, 'ColdstarterStack', {
+  functions,
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
